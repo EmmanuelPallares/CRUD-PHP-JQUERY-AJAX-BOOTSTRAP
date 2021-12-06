@@ -22,6 +22,15 @@ $sentenciasql->execute();
 exit();
 
 }
+if (isset($_GET['borrar'])) {
+   
+    $id=$_GET['borrar'];
+    $sentenciasql=$conexion->prepare("DELETE FROM teclados WHERE id=:id");
+    $sentenciasql->bindParam(':id', $id);
+    $sentenciasql->execute();
+    exit();
+    
+    }
 
 $sentenciasql=$conexion->prepare("SELECT * FROM teclados");
 $sentenciasql->execute();
