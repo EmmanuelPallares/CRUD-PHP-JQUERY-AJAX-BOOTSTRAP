@@ -12,13 +12,20 @@ echo "<h1>Conectado</h1>";
 echo $ex->getMessage();
 }
 
-if (isset($_GET['accion'])=="insert") {
-$nombre = "LOGITECH";
-
-$precio= 450;
+if (isset($_GET['accion'])=="insertala") {
+$nombre = $_POST['nombre'];
+$precio = $_POST['precio'];
 $sentenciasql=$conexion->prepare("INSERT INTO teclados (nombre, precio) VALUES (:nombre, :precio)");
 $sentenciasql->bindParam(':nombre', $nombre);
 $sentenciasql->bindParam(':precio', $precio);
 $sentenciasql->execute();
+exit();
 
 }
+
+$sentenciasql=$conexion->prepare("SELECT * FROM teclados");
+$sentenciasql->execute();
+$listaTeclados=$sentenciasql->fetchAll(PDO::FETCH_ASSOC);
+echo json_encode($listaTeclados);
+
+?>

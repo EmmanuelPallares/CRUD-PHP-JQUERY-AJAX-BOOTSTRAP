@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
 
     <!-- Bootstrap CSS -->
     <link
@@ -13,7 +13,8 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="jquery/jquery.js"></script>
 
     <title>Hello, world!</title>
   </head>
@@ -36,7 +37,7 @@
                   <div class="mb-3">
                     <label for="txtnombre" class="form-label">Nombre</label>
                     <input type="text"
-                      class="form-control" name="txtid" id="txtnombre" aria-describedby="helpId" placeholder="Nombre">
+                      class="form-control" name="txtnombre" id="txtnombre" aria-describedby="helpId" placeholder="Nombre">
                     
                   </div>
                   <div class="mb-3">
@@ -85,24 +86,47 @@
       </div>
     </div>
     <script>
-      $(document).ready(function () {
-        $("#mensaje").html("Hola desde jquery");
-      });
-      $('#txtid').click(function (e) {
-     insert();
+    //   $(document).ready(function(){
+    //     $("#botonagregar").click(function(){
+    //       var nombre = $("#txtnombre").val();
+    //       var precio = $("#txtprecio").val();
+    //       $.ajax({
+    //         url: "index.php?accion=insertala",
+    //         type: "POST",
+    //         data: {
+    //           nombre: nombre,
+    //           precio: precio
+    //         },
+    //         success: function(respuesta){
+    //        console.log(respuesta);  
+    //         }
+    //       });
+    //     });
+    //   });
+    $('#botonagregar').click(function (e) {
+   insertala();
 
-      })
-      function insert(){
+    });
+      function insertala(){
         var datos=new FormData();
         datos.append('nombre',$('#txtnombre').val());
         datos.append('precio',$('#txtprecio').val());
         console.log(datos.get('nombre'));
         console.log(datos.get('precio'));
-
-
-
+        $.ajax({
+      type: "post",
+      url:"index.php?accion=insertala",
+      data:datos,
+      processData:false,
+      contentType:false,
+    succes:function(respuesta){
+      console.log(respuesta);
+    }
+    });
       }
+ 
     </script>
+    
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -114,5 +138,6 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
+    
   </body>
 </html>
