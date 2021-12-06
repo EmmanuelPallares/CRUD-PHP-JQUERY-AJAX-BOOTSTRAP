@@ -86,23 +86,7 @@
       </div>
     </div>
     <script>
-    //   $(document).ready(function(){
-    //     $("#botonagregar").click(function(){
-    //       var nombre = $("#txtnombre").val();
-    //       var precio = $("#txtprecio").val();
-    //       $.ajax({
-    //         url: "index.php?accion=insertala",
-    //         type: "POST",
-    //         data: {
-    //           nombre: nombre,
-    //           precio: precio
-    //         },
-    //         success: function(respuesta){
-    //        console.log(respuesta);  
-    //         }
-    //       });
-    //     });
-    //   });
+
     $('#botonagregar').click(function (e) {
    insertala();
 
@@ -124,6 +108,12 @@
     }
     });
       }
+
+      function consultarDatos(){
+        $.getJSON("index.php",function (lol){
+          console.log(lol);
+        });}
+        consultarDatos();
  
     </script>
     
