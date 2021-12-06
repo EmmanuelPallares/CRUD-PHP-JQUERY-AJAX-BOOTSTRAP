@@ -122,8 +122,8 @@
             template+="<td>"+value.id+"</td>";
             template+="<td>"+value.nombre+"</td>";
             template+="<td>"+value.precio+"</td>";
-            template+="<td>Seleccionar";
-              template+='<input class="btn btn-danger"  type="button" value="borrar" onclick="borrar('+value.id+')"/></td>';
+            template+='<td> <input class="btn btn-info" type="button" value="Seleccionar"  onclick="seleccionar('+value.id+')"/>';
+              template+='<input class="btn btn-danger"  type="button" value="Eliminar"onclick="borrar('+value.id+')"/></td>';
               template+="</tr>";
 
               teclados.push(template);
@@ -139,6 +139,12 @@
           $.get("index.php?borrar="+id,function (){
             consultarDatos();
           });}
+
+          function seleccionar(id){
+            $.getJSON("index.php?consultar="+id,function (registros){
+              console.log(registros);
+            })
+          }
  
     </script>
     

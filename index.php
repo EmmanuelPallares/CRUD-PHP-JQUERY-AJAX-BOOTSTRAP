@@ -32,6 +32,16 @@ if (isset($_GET['borrar'])) {
     
     }
 
+if(isset($_GET["consultar"]))
+{
+    $id=$_GET["consultar"];
+    $sentenciasql=$conexion->prepare("SELECT * FROM teclados WHERE id=".$id);
+    $sentenciasql->execute();
+    $listaTeclados=$sentenciasql->fetchAll(PDO::FETCH_ASSOC);
+   echo json_encode($listaTeclados);
+    exit();
+}
+
 $sentenciasql=$conexion->prepare("SELECT * FROM teclados");
 $sentenciasql->execute();
 $listaTeclados=$sentenciasql->fetchAll(PDO::FETCH_ASSOC);
